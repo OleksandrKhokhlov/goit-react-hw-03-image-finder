@@ -8,7 +8,7 @@ export class ImageGalleryItem extends Component {
   };
 
   handlerToggleModal = () => {
-    this.setState(prevState => ({ isModal: !prevState.isModal }));
+    this.setState(({isModal}) => ({ isModal: !isModal }));
   };
 
   render() {
@@ -18,7 +18,9 @@ export class ImageGalleryItem extends Component {
     return (
       <ImageGalleryItems onClick={this.handlerToggleModal}>
         <img src={webformatURL} alt={tags} />
-        {this.state.isModal && <Modal src={largeImageURL} alt={tags} />}
+        {this.state.isModal && (
+          <Modal src={largeImageURL} alt={tags} onClose={this.handlerToggleModal} />
+        )}
       </ImageGalleryItems>
     );
   }
